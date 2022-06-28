@@ -18,7 +18,7 @@
                 <td>{{$employee -> f_name}} {{ $employee -> l_name }}</td>
 {{--                <td><img src="{{ asset('uploads/gallery/' . $employee->image) }}" width="80px" height="80px" alt="Image"> </td>--}}
                 <td>{{$employee -> email}}</td>
-                <td>{{$employee -> company}}</td>
+                <td>{{ $company_details[$employee -> company]->name}}</td>
 
                     <form action="{{ route('employee.destroy',$employee->id) }}" method="post">
                         @csrf
