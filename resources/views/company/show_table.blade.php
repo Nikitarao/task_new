@@ -1,4 +1,4 @@
-<h2 class="sub-header">All Employees</h2>
+<h2 class="sub-header">All Company</h2>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
