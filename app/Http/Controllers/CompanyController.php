@@ -18,8 +18,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company_details = company::paginate(10);
-        return view('company.index',compact('company_details'));
+        $company_details = company::all();
+        return $company_details->toArray();
     }
 
     /**

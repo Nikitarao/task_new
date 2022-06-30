@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use Brian2694\Toastr\Facades\Toastr;
 use App\Models\company;
 class EmployeeController extends Controller
 {
@@ -15,8 +14,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-//        $employees = Employee::paginate(5);
-//        return view('table',compact('employees'));
+        $employees = Employee::all();
+
+        return json_encode($employees);
     }
 
     /**
