@@ -19,6 +19,6 @@ class EmployeeSeeder extends Seeder
 //            'name'=>'Admin',
 //        ];
 //        Employee::create($company);
-        Employee::factory()->count(50)->create();
+        Employee::factory()->count(10)->create();
     }
 }

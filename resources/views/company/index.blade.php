@@ -32,3 +32,5 @@
 </x-app-layout>
 @include('employee.create')
 @include('company.create')
+@include('company.edit')
+@include('employee.delete')

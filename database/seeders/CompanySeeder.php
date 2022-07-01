@@ -22,7 +22,7 @@ class CompanySeeder extends Seeder
 //            'name'=>'Admin',
 //        ];
 //        Company::create($company);
-        company::factory()->count(50)->create();
+        company::factory()->count(10)->create();
 
     }
 }

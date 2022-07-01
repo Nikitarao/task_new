@@ -1,16 +1,32 @@
 
-{{--<div class="container-fluid">--}}
-{{--    <div class="row">--}}
-{{--        <div class="col-md-10">--}}
-{{--            <div class="card">--}}
-                <form action="{{route('company.update',$company_details->id)}}" method="Post">
+
+<!-- Modal -->
+<div class="modal fade" id="companyedit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" name="editCompany" id="editCompany" method="POST">
                     @csrf
-                    @method('PATCH')
-                    <input type="text" class="form-control mb-4" name="name" placeholder="First Name" value="{{ $company_details->name }}"><br>
-                    <input type="text"  class="form-control mb-2" name="website" placeholder="Last Name" value="{{ $company_details->website }}"><br>
-                    <input type="email"  class="form-control mb-2" name="email" placeholder="Email" value="{{ $company_details->email }}"><br>
-{{--                    <input type="file"  class="form-control mb-2" name="image" placeholder="" value="{{ $company_details->phone }}"><br>--}}
-                    <button    class="btn btn-primary text-dark">Save</button>
+                    <input type="text" class="form-control mb-2 name" name="name" placeholder="First Name"><br>
+                    <input type="email"  class="form-control mb-2 email" name="email" placeholder="Email"><br>
+
+                    <input type="text"  class="form-control mb-2 website" name="website" placeholder=" Enter website"><br>
+                    <input type="file" class="form-control mb-3 image" name="image">
+                    <input type="hidden" name="id" id="editidCompany">
+
+                    <a href="" id="subIdCompany">save</a>
                 </form>
-{{--   </div>--}}
-{{--        </div></div></div>--}}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var editCompany = '<?php echo route('editCompany'); ?>';
+    var editComapnySave = '<?php echo route('editCompanySave'); ?>';
+</script>

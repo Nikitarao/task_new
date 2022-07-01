@@ -19,7 +19,10 @@ class CompanyController extends Controller
     public function index()
     {
         $company_details = company::all();
-        return json_encode($company_details);
+        return view('company.index',compact('company_details'));
+    }
+    public function company_table(){
+
     }
 
     /**
@@ -29,7 +32,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $company = company::all();
+        return json_encode($company);
     }
 
     /**
@@ -40,11 +44,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name'=> 'required',
             'email'=> 'required',
         ]);
         $company =new Company;
+
         if($request->file('image')){
 
             $file= $request->file('image');
@@ -56,9 +62,8 @@ class CompanyController extends Controller
         $company->email =$request->get('email');
         $company->website =$request->get('website');
 
-//        dd($company);
         $company->save();
-        return redirect()->route('dashboard');
+        return ['msg'=>'data have been saved','status'=>200];
     }
 
     /**
@@ -83,6 +88,27 @@ class CompanyController extends Controller
         $employee = Employee::find($id);
         $company_details =Company::find($id);
         return view('company.edit',['company_details'=>$company_details,'employee'=>$employee]);
+    }
+    public function editCompany(Request $request){
+        $company = company::find($request->id);
+        return $company;
+    }
+    public function editCompanySave(Request $request)
+    {
+        $company = company::find($request->id);
+
+        $company -> name = $request -> name;
+        $company -> email = $request -> email;
+        $company -> website = $request -> website;
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/Image'), $filename);
+            $company->image= $filename;
+        }
+        $company->save();
+
+        return ['msg'=>'data save successfully'];
     }
 
     /**
@@ -126,5 +152,12 @@ class CompanyController extends Controller
         $company = company::find($id);
         $company -> delete();
         return redirect()->route('company.index');
+    }
+
+    public function deleteCompany(Request $request)
+    {
+        $company = company::find($request->id);
+        $company -> delete();
+        return ['msg'=>'data delete successfully'];
     }
 }

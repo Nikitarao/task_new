@@ -23,9 +23,8 @@
 
                         <input type="email"  class="form-control mb-2" name="email" placeholder="Email"><br>
                         <input type="number"  class="form-control mb-2" name="phone_number" placeholder="Phone no."><br>
-                        <input type="submit" id="real-submit" style="visibility: hidden;display: none"/>
 
-                        <a href="#" id="submitId">save</a>
+                        <a href="" id="submitId">save</a>
                     </form>
 
                 </div>

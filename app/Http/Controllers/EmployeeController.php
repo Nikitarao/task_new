@@ -19,7 +19,6 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();
-
         return json_encode($employees);
     }
 
@@ -30,7 +29,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $employees = Employee::all();
+        $company=company::all();
+        return json_encode($employees,$company);
     }
 
     /**
@@ -55,20 +56,7 @@ class EmployeeController extends Controller
         $employee->save();
         return ['msg'=>'data have been saved','status'=>200];
     }
-    public function formData(Request $request)
-    {
 
-        $shop = Auth::user();
-        $request->validate([
-            'l_name'      => 'required',
-            'f_email'     => 'required',
-        ]);
-
-        $data = $request->all();
-        #create or update your data here
-
-        return response()->json( $data);
-    }
 
 
 
@@ -151,5 +139,11 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $employee -> delete();
         return redirect()->route('dashboard');
+    }
+    public function delete(Request $request)
+    {
+        $employee = Employee::find($request->id);
+        $employee -> delete();
+        return ['msg'=>'data delete successfully'];
     }
 }

@@ -13,13 +13,13 @@
         </thead>
         <tbody id="companyTable">
 
-
         </tbody>
     </table>
     <div class=" d-flex justify-content-md-end mt-2" >
-        {!! $company_details->links() !!}
     </div>
 </div>
 <script>
-    var jstable = '<?php echo route('company.index'); ?>';
+    var jstable = '<?php echo route('company.create'); ?>';
+    var deleteidCom = '<?php echo route('deleteCompany'); ?>';
+
 </script>

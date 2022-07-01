@@ -32,3 +32,8 @@ Route::resource('employee',EmployeeController::class);
 Route::resource('company',CompanyController::class);
 Route::get('/edit',[EmployeeController::class,'editdata'])->name('editdata');
 Route::get('/edit/save',[EmployeeController::class,'editdatasave'])->name('editdatasave');
+Route::get('/delete',[EmployeeController::class,'delete'])->name('deleteEmployee');
+Route::get('/table',[EmployeeController::class,'company_table'])->name('company_table');
+Route::get('/editCompany',[CompanyController::class,'editCompany'])->name('editCompany');
+Route::get('/editCompany/save',[CompanyController::class,'editCompanySave'])->name('editCompanySave');
+Route::get('/dete',[CompanyController::class,'deleteCompany'])->name('deleteCompany');
