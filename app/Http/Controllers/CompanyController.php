@@ -19,7 +19,7 @@ class CompanyController extends Controller
     public function index()
     {
         $company_details = company::all();
-        return $company_details->toArray();
+        return json_encode($company_details);
     }
 
     /**

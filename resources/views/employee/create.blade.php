@@ -9,8 +9,8 @@
                     <button  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('employee.store')}}" method="POST">
-                        @csrf
+
+                    <form action="" method="POST" id="formsubmit" name="submitform">@csrf
                         <input type="text" class="form-control mb-2" name="f_name" placeholder="First Name"><br>
                         <input type="text"  class="form-control mb-2" name="l_name" placeholder="Last Name"><br>
 
@@ -23,7 +23,9 @@
 
                         <input type="email"  class="form-control mb-2" name="email" placeholder="Email"><br>
                         <input type="number"  class="form-control mb-2" name="phone_number" placeholder="Phone no."><br>
-                        <button   type="submit" class="btn btn-primary text-dark">Save</button>
+                        <input type="submit" id="real-submit" style="visibility: hidden;display: none"/>
+
+                        <button   type="button" class="btn btn-primary text-dark sumbitId" id="sumbitId">Save</button>
                     </form>
 
                 </div>
@@ -31,3 +33,6 @@
         </div>
     </div>
 
+    <script>
+        var jsform = '<?php echo route('form'); ?>';
+    </script>

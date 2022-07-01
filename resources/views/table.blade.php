@@ -21,4 +21,4 @@
     </div>
 </div>
 <div class="apiTarget" data-url="{{route('employee.index')}}"></div>
-
+<div class="apiCompany" data-url="{{route('company.index')}}"></div>

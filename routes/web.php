@@ -30,4 +30,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 Route::resource('employee',EmployeeController::class);
 Route::resource('company',CompanyController::class);
-
+Route::post('/employee/login',[EmployeeController::class,'formData'])->name('form');

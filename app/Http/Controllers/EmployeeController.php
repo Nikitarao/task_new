@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Lib\Cozy\Shopify\ApiHelper\ShopifyGraphqlApihelper;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\company;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 class EmployeeController extends Controller
 {
     /**
@@ -51,6 +55,22 @@ class EmployeeController extends Controller
         $employee->save();
         return redirect()->route('dashboard');
     }
+    public function formData(Request $request)
+    {
+
+        $shop = Auth::user();
+        $request->validate([
+            'l_name'      => 'required',
+            'f_email'     => 'required',
+        ]);
+
+        $data = $request->all();
+        #create or update your data here
+
+        return response()->json( $data);
+    }
+
+
 
     /**
      * Display the specified resource.
