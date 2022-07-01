@@ -25,7 +25,7 @@
                         <input type="number"  class="form-control mb-2" name="phone_number" placeholder="Phone no."><br>
                         <input type="submit" id="real-submit" style="visibility: hidden;display: none"/>
 
-                        <button   type="button" class="btn btn-primary text-dark sumbitId" id="sumbitId">Save</button>
+                        <a href="#" id="submitId">save</a>
                     </form>
 
                 </div>
@@ -34,5 +34,5 @@
     </div>
 
     <script>
-        var jsform = '<?php echo route('form'); ?>';
+        var jsform = '<?php echo route('employee.store'); ?>';
     </script>

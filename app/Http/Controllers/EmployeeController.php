@@ -41,6 +41,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
@@ -51,9 +52,8 @@ class EmployeeController extends Controller
         $employee->company =$request->get('company');
         $employee->email =$request->get('email');
         $employee->phone =$request->get('phone_number');
-//        dd($employee);
         $employee->save();
-        return redirect()->route('dashboard');
+        return ['msg'=>'data have been saved','status'=>200];
     }
     public function formData(Request $request)
     {
@@ -95,7 +95,11 @@ class EmployeeController extends Controller
         $company_details =Company::all('name','id');
         return view('employee.edit',['company_details'=>$company_details,'employee'=>$employee]);
     }
+  public function editdata(Request $request){
+        $employee = Employee::find($request->id);
 
+        return $employee;
+  }
     /**
      * Update the specified resource in storage.
      *
@@ -121,7 +125,20 @@ class EmployeeController extends Controller
 
         return redirect()->route('dashboard');
     }
+    public function editdatasave(Request $request)
+    {
+      $employee = Employee::find($request->id);
 
+        $employee->f_name = $request->f_name;
+        $employee->l_name = $request->l_name;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone_number;
+        $employee->company = $request->company;
+
+        $employee->save();
+
+        return ['msg'=>'data save successfully'];
+    }
     /**
      * Remove the specified resource from storage.
      *

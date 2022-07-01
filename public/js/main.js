@@ -16,7 +16,7 @@ $.ajax({
 
 
                         <td>
-                        <a href="#" class="btn btn-sm btn-dark" data-deleteid="${data.id}">Edit</a> </td>
+                        <a href="#" class="btn btn-sm btn-dark edit-btn" data-id="${data.id}">Edit</a> </td>
                         <td><button type="submit" class="btn btn-sm btn-danger delete-btn text-dark" data-deleteid="${data.id}">Delete</button> </td>
 
 
@@ -43,7 +43,7 @@ $.ajax({
                 <td>${data.email}</td>
                 <td>${data.website}</td>
                         <td>
-                        <a href="#" class="btn btn-sm btn-dark" data-deleteid="${data.id}">Edit</a> </td>
+                        <a href="#" class="btn btn-sm btn-dark" data-id="${data.id}">Edit</a> </td>
                         <td><button type="submit" class="btn btn-sm btn-danger delete-btn text-dark" data-deleteid="${data.id}">Delete</button> </td>
 
 
@@ -64,52 +64,54 @@ $(document).on('click','.delete-btn',function (e){
         }
     })
 })
-let saveDisBtn1 = $('#sumbitId');
-console.log(saveDisBtn1);
-saveDisBtn1.on('click',function(e){
-    console.log("inside");
-    var $formValidate = $("#formsubmit");
-    // if ($formValidate.length){
-    //     $formValidate.validate({
-            // errorClass: "error fail-alert",
-            //validClass: "valid success-alert",
-            // rules : {
-            //     disCode: {
-            //         required : true,
-            //     },
-            //     disPercent: {
-            //         required : true
-            //     },
-            // },
-            // messages : {
-            //     disCode: {
-            //         required: "This field is required"
-            //     },
-            //     disPercent: {
-            //         required : "This field is required"
-            //     },
-            // },
-            // submitHandler: function(form) {
+
+
+$(document).on('click','#submitId',function(e){
                 var data= $( "#formsubmit" ).serialize();
                 console.log(data);
                 var form = $("#formsubmit");
                 $.ajax({
-                    type: "POST",
                     url: jsform,
-                    data: form.serialize(),
+                    type: "POST",
+                    data: data,
                     success: function (response) {
-                        alert(response);
-                        if (response=='Code must be unique. Please try a different code.'){
-                            $('#not_found').text('Code must be unique');
-                            $('#not_found').css('color','red');
-                        }
-                    },
-                    error: function(data,xhr){
                         $("#test").modal('hide');
-                        cozyNoty('Discount has been created.', 'fa-check', 'success');
-                    }
+                    },
                 });
             // }
+    //     })
+    // }
+});
+
+$(document).on('click','.edit-btn',function(e){
+    let id = $(this).data('id');
+    $.ajax({
+        url: editid,
+        type: "GET",
+        data: {id:id},
+        success: function (response) {
+            $('#employeeedit').modal('show');
+            $('.fname').val(response.f_name);
+            $('.lname').val(response.l_name);
+            $('.email').val(response.email);
+            $('.mobile').val(response.phone);
+            $('#editidinput').val(response.id);
+        },
+    });
+
+});
+
+$(document).on('click','#editid',function(e){
+    var data= $( "#editform" ).serialize();
+    $.ajax({
+        url: editidsave,
+        type: "GET",
+        data: data,
+        success: function (response) {
+            $('#employeeedit').modal('hide');
+        },
+    });
+    // }
     //     })
     // }
 });

@@ -30,5 +30,6 @@
     </div>
 </x-app-layout>
 @include('employee.create')
+@include('employee.edit')
 @include('company.create')
 
